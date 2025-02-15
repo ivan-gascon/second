@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Interactiva</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<script>
+    // Hacer que el gato camine a donde haga clic
+document.addEventListener("click", function(event) {
+    let gato = document.getElementById("gato");
+    let x = event.clientX - gato.clientWidth / 2;
+    let y = event.clientY - gato.clientHeight / 2;
+
+    gato.style.left = x + "px";
+    gato.style.top = y + "px";
+});
+
+let escalaNoQuiero = 1;
+let escalaPulsaAqui = 1;
+
+botonNoQuiero.addEventListener("click", function() {
+    // Hacer el botón "No quiero alv" más chico
+    escalaNoQuiero *= 0.9; // Se reduce el tamaño
+    botonNoQuiero.style.transform = `scale(${escalaNoQuiero})`;
+
+    // Hacer el botón "Pulsa aquí" más grande
+    escalaPulsaAqui *= 1.1; // Se aumenta el tamaño
+    botonPulsaAqui.style.transform = `scale(${escalaPulsaAqui})`;
+});
+</script>
+<style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #ffe6f2;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Imágenes en las esquinas */
+.imagen-borde {
+    position: absolute;
+    width: 300px;
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+/* Posicionamiento 50% afuera de la pantalla */
+.esquina-izquierda-superior { top: -25px; left: -25px; }
+.esquina-derecha-superior { top: -25px; right: -25px; }
+.esquina-izquierda-inferior { bottom: -25px; left: -25px; }
+.esquina-derecha-inferior { bottom: -25px; right: -25px; }
+
+/* Botones */
+button {
+    position: absolute;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.3s, font-size 0.3s;
+}
+
+#botonNoQuiero {
+    bottom: 50px;
+    left: 20px;
+}
+
+#botonPulsaAqui {
+    bottom: 50px;
+    right: 20px;
+}
+
+/* Gato */
+.gato {
+    position: absolute;
+    width: 120px;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: all 0.5s ease-in-out;
+    z-index: 10;
+}
+
+/* Imagen animada que aparece desde abajo */
+.imagen-animada {
+    position: absolute;
+    width: 200px;
+    bottom: -250px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: bottom 1s ease-in-out;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .imagen-borde { width: 120px; }
+    .gato { width: 90px; }
+    .imagen-animada { width: 150px; }
+}
+h1 {
+    font-size: 50px;
+    color: #ff4d6d;
+    animation: latido 1.5s infinite alternate;
+}
+
+@keyframes latido {
+    from { transform: scale(1); }
+    to { transform: scale(1.1); }
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    background-color: #ff4d6d;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+</style>
+
+<body>
+    <div>
+        <h1>Ola</h1>
+    </div>
+    <!-- Imágenes en las esquinas -->
+    <img src="1.png" class="imagen-borde esquina esquina-izquierda-superior" id="esquina1">
+    <img src="2.png" class="imagen-borde esquina esquina-derecha-superior" id="esquina2">
+    <img src="3.png" class="imagen-borde esquina esquina-izquierda-inferior" id="esquina3">
+    <img src="4.png" class="imagen-borde esquina esquina-derecha-inferior" id="esquina4">
+
+    <!-- Botones -->
+    <button id="botonNoQuiero">No quiero alv</button>
+    <a href="flores.html" target="_blanck">
+        <button id="botonPulsaAqui">Ci</button>
+    </a>
+
+    <!-- Gato -->
+    <img src="gato.gif" class="gato" id="gato">
+
+    <!-- Imagen animada que aparece al pulsar "Pulsa aquí" -->
+    <img src="extra.jpg" class="imagen-animada" id="imagenAnimada">
+
+    <script src="script.js"></script>
+</body>
+</html>
